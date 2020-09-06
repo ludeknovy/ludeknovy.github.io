@@ -8,7 +8,7 @@ module.exports = {
     url,
     siteUrl: url,
     title: 'ludeknovy.tech',
-    subtitle: '',
+    subtitle: 'Thoughts on testing and test automation',
     copyright: '© All rights reserved.',
     disqusShortname: '',
     menu: [
