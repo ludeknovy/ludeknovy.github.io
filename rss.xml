@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ludeknovy.tech]]></title><description><![CDATA[Thoughts on testing and test automation]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 06 Sep 2020 09:52:06 GMT</lastBuildDate><item><title><![CDATA[KPI validation with locust.io]]></title><description><![CDATA[Tutorial on how to create KPI validation for locust.io to automatically check whether application meets performance criteria.]]></description><link>https://ludeknovy.tech/blog/kpi-validation-with-locust/</link><guid isPermaLink="false">https://ludeknovy.tech/blog/kpi-validation-with-locust/</guid><pubDate>Mon, 31 Aug 2020 02:46:37 GMT</pubDate><content:encoded>&lt;p&gt;In performance testing KPIs should be an inherent part of requirements, thus we don’t blindly stress your application but rather we have clear idea what your stack should handle under defined circumstances. Real world example could be: “The 90 percentile should be below 50ms while handling 500 RPS (requests per second)”.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ludeknovy.tech]]></title><description><![CDATA[Thoughts on testing and test automation]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 06 Sep 2020 12:44:24 GMT</lastBuildDate><item><title><![CDATA[KPI validation with locust.io]]></title><description><![CDATA[Tutorial on how to create KPI validation for locust.io to automatically check whether application meets performance criteria.]]></description><link>https://ludeknovy.tech/blog/kpi-validation-with-locust/</link><guid isPermaLink="false">https://ludeknovy.tech/blog/kpi-validation-with-locust/</guid><pubDate>Mon, 31 Aug 2020 02:46:37 GMT</pubDate><content:encoded>&lt;p&gt;In performance testing KPIs should be an inherent part of requirements, thus we don’t blindly stress your application but rather we have clear idea what your stack should handle under defined circumstances. Real world example could be: “The 90 percentile should be below 50ms while handling 500 RPS (requests per second)”.&lt;/p&gt;
 &lt;p&gt;Once we fine tuned you application to meet defined performance criteria we can hook up this test into your CI/CD tool and run the same performance test as a part of your delivery pipeline to prevent performance regression. To fully automate whole process — we want want to look at the results only when the build has failed because of defined KPIs were not met — we need to add ability to decide whether to pass or fail to our Locust script. Locust doesn’t have this feature baked in, but fortunately Locust is very hackable and provide nice API for customization.&lt;/p&gt;
 &lt;p&gt;For the purpose of automated KPI validation we are going to create custom plugin using locust’s event hooks and its inner statistics. The overall plugin design is pretty simple:&lt;/p&gt;
 &lt;ol&gt;
@@ -144,4 +144,237 @@ Expected&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; status co
     but&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; status code &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;500&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; received &lt;span class=&quot;token keyword&quot;&gt;with&lt;/span&gt; body&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
     &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;API response will be printed here&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;In my eyes &lt;code class=&quot;language-text&quot;&gt;assert_that(response, has_returned_status_code(200))&lt;/code&gt; is more elegant solution than &lt;code class=&quot;language-text&quot;&gt;assert response.status_code == 200&lt;/code&gt; and providing very useful information for quick change assessment detected by API test.&lt;/p&gt;
-&lt;p&gt;Happy API testing.&lt;/p&gt;</content:encoded></item></channel></rss>
+&lt;p&gt;Happy API testing.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Generate intuitive JMeter reports with Jtl Reporter and Taurus]]></title><description><![CDATA[Tutorial on how to create KPI validation for locust.io to automatically check whether application meets performance criteria.]]></description><link>https://ludeknovy.tech/blog/generate-intuitive-jmeter-reports-with-jtlreporter-and-taurus/</link><guid isPermaLink="false">https://ludeknovy.tech/blog/generate-intuitive-jmeter-reports-with-jtlreporter-and-taurus/</guid><pubDate>Fri, 13 Dec 2019 02:46:37 GMT</pubDate><content:encoded>&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/d5e05d326f856d922dc7b08cd35fde52/e8950/report.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 86.66666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAIAAABSJhvpAAAACXBIWXMAAAsSAAALEgHS3X78AAACNElEQVQ4y5WSC2/TMBSF+///yUAgwYRg3UopbN26DdY3Ymhr16fT2k5sx484icNNXEqlISSiL87JiY99k5taURSpcWgUoy5/eIg/z+KLqews8OnjvDVdt8dPJ9/uO+PJ+fXd2eXtajAUX65ss1Eo5YqiRiijlAkqTKyVtlzbJM0jqYUx2toNCYXUWhsacbimUhaJcjaJIo4pqzEW05D/mMzuJ4tFQBYIA8uAAHNEJvP1bI3BX24ojPOAzgBEaCQiFtcYlwGOLvs/P92OGzcj4Ox6WL8aeE47JfXOYO/Ur/rNm1GwjSBYC6NYxKr4zwMiEKzB7iGLCROIRAEONyTaULYhDOFwGeBVgNGWeqeEsgCmEQaRXdloG7a+jqGkk3Yf+HDR87w/75ZcdMvb9h9O2j2IcCgbFhBCFc5V5bhnFM+Eg8kQKXeGkwuV2NQkJrFwGm20MuAYmybaKJtak2idaBCeJLFMyDLMeYwwr4/QcW/ledtdvrlbwLgXMB46x93lGnMIljsDLNZEKABzeQgRcgtCVOxNLn3q761yRf77Pf/ZKqger/H3d+3hq1b/xUegBxw19rr/sumdnT5qDF63MILmwtfmMqQMz1A4D8h0TZ8QearGaSkq0OZxCf8knqzAB9gKR/73LF9YSKW1zdLM5blzNk3TLAOdpKWT5vAgc87BmFcTMl/2LsylUhpmAtAK6ITvSSkqB3wIlROyHFawWc59q/x3g1YDsAq4XlR65/jbQ3zqF5hjpmMWQgqlAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;Performance report&quot;
+        title=&quot;Performance report&quot;
+        src=&quot;/static/d5e05d326f856d922dc7b08cd35fde52/d9199/report.png&quot;
+        srcset=&quot;/static/d5e05d326f856d922dc7b08cd35fde52/8ff5a/report.png 240w,
+/static/d5e05d326f856d922dc7b08cd35fde52/e85cb/report.png 480w,
+/static/d5e05d326f856d922dc7b08cd35fde52/d9199/report.png 960w,
+/static/d5e05d326f856d922dc7b08cd35fde52/07a9c/report.png 1440w,
+/static/d5e05d326f856d922dc7b08cd35fde52/29114/report.png 1920w,
+/static/d5e05d326f856d922dc7b08cd35fde52/e8950/report.png 2000w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;Taurus and JMeter became my go-to performance tools very quickly. JMeter is considerer to be industry standard with very strong community support and Taurus creates a wrapper around JMeter (and other performance testing tools) and expose neat abstraction which simplifies the complexity of JMeter and automation. Together they create incredibly powerful performance testing solution. The only major issue I had with them is inconvenient HTML report and test result management in case you do not want to pay for BlazeMeter.&lt;/p&gt;
+&lt;p&gt;In theory this could be solved by e.g. Grafana and underlying database. While it works very well for storing and visualising data, it does not work so very well in comparison of those reports in retrospective views. BlazeMeter provides nice reports which help to mitigate this problem, but unfortunately I was not able to find any OSS alternative to it. For this reason I have decided to create &lt;a href=&quot;https://github.com/ludeknovy/jtl-reporter&quot;&gt;Jtl Reporter&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/8bbc64326dbeb248eff016c7023e8460/e8950/scenario.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 59.166666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAAsSAAALEgHS3X78AAAB6UlEQVQoz32Q22sTQRTG82cLIhTsSzHEBNukiU1jglV8EIpKQWz6UlqwtLUh6SWxm9JcN8lu9zb3q7O7jQ8qHoZhvj3zm+87m9mqvS3XdvLVRq6y/aJUzW5Ws6Vq4XX9ZblRqDTylfiQ36zXiuXaq40368Vnq6WnT3Lba9mt+ruM1noOyYE12reGh4Npsz8+HtrtGTy+B1+73sFt0LTC1hhoq6fb57p1Sn9c0LNzPbiXWmcWro8R9hFyIogZ6y/c+DkPNg77G/u99W+9vYuxVpJpDb8fBR/fSwg1BGA6dQOQ8fwIIdKZ2F/aNyd3o3zz6MNp624erexePv90tfr5amW3s3flsO6lV1jzijnhLth1Jzw78anI+AEIQtC3FzeTWXc674zs67EdAGzZ4a0dWLOgN/HHHiKOg6yfeDigrkMfHoDj+iEyziCMoFZKcq6U0lKopHRSglHOqDlIc8FIpYjkRhLKTOQ4dgSQ0ZRSKc0L3OxGpjjGBJghU214KamgyeVHGERR3BZCmJ2n/svCGAMAfsuU/wtWijOuEmeVtP+EE+cYFQlMlnA6MyU0haUQZgRCTDyVwPB/sJnZBGWMma4Jr5YV/xhCYTrzP2P7QeSFyINCcM6YYMx4Cy6SxWP5+GW5WNJDmBrXX1VRkQux2hZdAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;Scenario detail&quot;
+        title=&quot;Scenario detail&quot;
+        src=&quot;/static/8bbc64326dbeb248eff016c7023e8460/d9199/scenario.png&quot;
+        srcset=&quot;/static/8bbc64326dbeb248eff016c7023e8460/8ff5a/scenario.png 240w,
+/static/8bbc64326dbeb248eff016c7023e8460/e85cb/scenario.png 480w,
+/static/8bbc64326dbeb248eff016c7023e8460/d9199/scenario.png 960w,
+/static/8bbc64326dbeb248eff016c7023e8460/07a9c/scenario.png 1440w,
+/static/8bbc64326dbeb248eff016c7023e8460/29114/scenario.png 1920w,
+/static/8bbc64326dbeb248eff016c7023e8460/e8950/scenario.png 2000w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;Jtl Reporter could be defined as JMeter and Taurus performance result reporting and management tool. Jtl Reporter is meant to be used as addition to Grafana. And its main objective is to give you the possibility to store test reports and compare them with ease.&lt;/p&gt;
+&lt;h3&gt;Compare test runs&lt;/h3&gt;
+&lt;p&gt;Run couple of measurements and you are ready to start comparing them. Go to test run detail and click “chart icon” in Request statistics card header. You can choose another test run you want it to compare to. After confirmation you get updated request statistics table.&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/6530f3a352521256da6278e943519c0c/c96dc/report_stats.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 17.083333333333332%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAIAAAAcOLh5AAAACXBIWXMAAAsSAAALEgHS3X78AAAAjUlEQVQI1y2LzQrCQAyE+/6v0oKCXloU9GyLeupJRDxb1y5N9jdxWh2G5GOGKYydHv2tW+3aqmnL+n/LZnbV/OBU1vB5vb9sDtftEfDs72acitfwGSeOkrNKkKSqWSRJjvhgnYUWnFREZQmU2GNYDO/RGMtE3nkiDj4AmMlBvNg55DFEh9b5CIVkLWH8BXafov+KnQKfAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;Report statistics&quot;
+        title=&quot;Report statistics&quot;
+        src=&quot;/static/6530f3a352521256da6278e943519c0c/d9199/report_stats.png&quot;
+        srcset=&quot;/static/6530f3a352521256da6278e943519c0c/8ff5a/report_stats.png 240w,
+/static/6530f3a352521256da6278e943519c0c/e85cb/report_stats.png 480w,
+/static/6530f3a352521256da6278e943519c0c/d9199/report_stats.png 960w,
+/static/6530f3a352521256da6278e943519c0c/07a9c/report_stats.png 1440w,
+/static/6530f3a352521256da6278e943519c0c/29114/report_stats.png 1920w,
+/static/6530f3a352521256da6278e943519c0c/c96dc/report_stats.png 2557w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;The superscript text numbers indicates whether the current test run result is better (green) or worse (red) compared to selected test run and what is the difference. If you compare two test runs with either different environments or virtual users (threads) you will get a warning, because such a comparison could be misleading.&lt;/p&gt;
+&lt;h3&gt;Set test reference&lt;/h3&gt;
+&lt;p&gt;If you tuned your application to a desired state you can set the test run as a reference for other tests. This can be achieved by clicking edit button in test detail and checking set as base run . If there is reference run in given scenario each test detail will display “rocket” icon in Request Statistics. It gives you short cut for quick comparison with a test run reference.&lt;/p&gt;
+&lt;h3&gt;Track changes&lt;/h3&gt;
+&lt;p&gt;To track individual label (endpoint) changes over time you can click blue “chart icon” in Request Statistics table. The chart displays 90, 95 and 99 percentiles trends. You have the possibility to compare all results (last 100) or filter them by virtual users which gives you less misleading overview.&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/db4957fcb426d37065f96b87391c4059/91953/history.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 30.83333333333333%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAIAAABM9SnKAAAACXBIWXMAAAsSAAALEgHS3X78AAABYUlEQVQY0yWPy0sCURSH509r1cMWRmOW2aaiMIVEK4yG1Jm5d57XUbeZD8i0xEWhJRkV9NDIR0FigkJiLVpEEbQwsKarHj7O5vf74BxCp5/STRhI0kiShkGNVkRKoVjK35WL5cdiufJwXynjXSpVqzUnzWpGNJpRcmhgWK8d001OExKSgYt3rgDWwS1aqaOLa1VVO51P9a+p/jbev27a7Ur9LauqH/vJA5vFItvtnMUsuVwi8hA0w7IA8AKneD0QsPlcDsvBwh51FqDOw7OpuD0bHU/EMs367dUl5DjF51P8fsgLbpohAICOjc0Fi81kXTPOLaWOT7B82mgdPj2na61M7SVdbaaqzdfvn3giOTNvNi2v4vI65cQiwbCgC4AYJ8MgxbsVCOyEt2OR0G6PaCSIiYSCIkIuhnX3+z26Z/O8gJAsSpIsy6IgQMgBCPEvOKIZBnQHYiRRRLLcB3I8Tv8Bc1PVKM+MDswAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;Tracking endpoint performance&quot;
+        title=&quot;Tracking endpoint performance&quot;
+        src=&quot;/static/db4957fcb426d37065f96b87391c4059/d9199/history.png&quot;
+        srcset=&quot;/static/db4957fcb426d37065f96b87391c4059/8ff5a/history.png 240w,
+/static/db4957fcb426d37065f96b87391c4059/e85cb/history.png 480w,
+/static/db4957fcb426d37065f96b87391c4059/d9199/history.png 960w,
+/static/db4957fcb426d37065f96b87391c4059/07a9c/history.png 1440w,
+/static/db4957fcb426d37065f96b87391c4059/29114/history.png 1920w,
+/static/db4957fcb426d37065f96b87391c4059/91953/history.png 2549w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h2&gt;How to get started ?&lt;/h2&gt;
+&lt;p&gt;Its easy to get Jtl Reporter up and running with docker-compose. Clone this &lt;a href=&quot;https://github.com/ludeknovy/jtl-reporter&quot;&gt;repository&lt;/a&gt; and run:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;docker-compose up -d&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Wait for it to start up and open: &lt;a href=&quot;http://IP_ADDRESS:2020&quot;&gt;http://IP_ADDRESS:2020&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;To log-in use default credentials (change them afterwards):&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;username: admin
+password: 2Txnf5prDknTFYTVEXjj&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Once you logged in you have to create new project and scenario before you can upload any performance tests data. To create new project click on user icon at the top menu, then administrate — add project . Enter project name and confirm. Now you need to obtain an api token by clicking api tokens and then add token . Finally head to project detail by selecting it in projects dropdown at top menu and click add scenario. Enter scenario name and confirm. Now you are all set and we can integrate with taurus.&lt;/p&gt;
+&lt;h2&gt;Taurus integration&lt;/h2&gt;
+&lt;p&gt;One of the convenient features taurus gives you are the services namely &lt;a href=&quot;https://gettaurus.org/docs/ShellExec/&quot;&gt;shell exec service&lt;/a&gt;. It allow us to execute commands during test execution stages. We are going to use post-proces stage for uploading test results. The taurus configuration can look like:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; shellexec
+    &lt;span class=&quot;token key atrule&quot;&gt;post-process&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; python $PWD/helper/upload&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;kpi.py &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;p $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;PROJECT&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;s $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;SCENARIO&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;e $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;BASE_URL&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;host $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;HOSTNAME&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;ec $TAURUS_EXIT_CODE &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;er &quot;$&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;TAURUS_STOPPING_REASON&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&quot;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Example of upload-kpi.py script can be found &lt;a href=&quot;https://github.com/ludeknovy/jtl-reporter/blob/master/scripts/upload_jtl.py&quot;&gt;here&lt;/a&gt;. Do not forget to provide it with api token generated earlier (to avoid 401 error), project and scenario name. I do store them in the same taurus yaml file. The whole taurus yaml file can look like:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;included-configs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; ./bzt.config.yml
+&lt;span class=&quot;token key atrule&quot;&gt;settings&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;PROJECT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; yourProjectName
+    &lt;span class=&quot;token key atrule&quot;&gt;SCENARIO&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; yourScenarioName
+&lt;span class=&quot;token key atrule&quot;&gt;execution&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;concurrency&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;50&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;ramp-up&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 2m
+  &lt;span class=&quot;token key atrule&quot;&gt;hold-for&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 30m
+  &lt;span class=&quot;token key atrule&quot;&gt;scenario&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; myScenario
+&lt;span class=&quot;token key atrule&quot;&gt;scenarios&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+ &lt;span class=&quot;token key atrule&quot;&gt;myScenario&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+   &lt;span class=&quot;token key atrule&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; jmx/myScenario.jmx
+&lt;span class=&quot;token key atrule&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; shellexec
+    &lt;span class=&quot;token key atrule&quot;&gt;post-process&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; python $PWD/helper/upload&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;kpi.py &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;p $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;PROJECT&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;s $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;SCENARIO&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;e $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;BASE_URL&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;host $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;HOSTNAME&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;ec $TAURUS_EXIT_CODE &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;er &quot;$&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;TAURUS_STOPPING_REASON&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&quot;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If you want to collect monitoring logs add to your yaml taurus configuration file another service:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; monitoring
+    &lt;span class=&quot;token key atrule&quot;&gt;~local&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;interval&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; 20s
+      &lt;span class=&quot;token key atrule&quot;&gt;logging&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean important&quot;&gt;True&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;metrics&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; cpu
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; disk&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;space
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; mem&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/06c661de1b7f3a870c74e9b380eb261e/e8950/monitoring_stats.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 30.41666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAIAAABM9SnKAAAACXBIWXMAAAsSAAALEgHS3X78AAABLklEQVQY001Py06DQBTlz1wYWNg0Fku76EJMqIrRoAaBGWZ4DJjGAP0KY3w07Fy0/Qpr68r+RilRKF5sYjz3zs2cO+fcmeHEtiQedFr7XbHV2RX2BlG8WHy8zWbv8/lfAv1cLm8HdwLPNxoivyO0m01R6nKu52GT6ucIaeToWEtfJ1VVFUVZ/UNZ1vR5lJ7IMjtTab/vGjeOzzjTQghhbGOPeYZpTKe1+asowb7Z1AnG799Z4/HENC0/CLwwxITCnkPY1q70Q0VVTi86PfnxJQVdlmV5nmfrdQaR56tVBs37hyepJ4NMVtTLax2MnAXXYptQigkBzoIwGQ7jJIqTOEriLSJYSeIzZiIMGpBDBSM8G1yU+b7rwvc9x3WAUocSQrBdg9S8BpyCbAvowqAfz0/W/BNb95cAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;Monitoring stats&quot;
+        title=&quot;Monitoring stats&quot;
+        src=&quot;/static/06c661de1b7f3a870c74e9b380eb261e/d9199/monitoring_stats.png&quot;
+        srcset=&quot;/static/06c661de1b7f3a870c74e9b380eb261e/8ff5a/monitoring_stats.png 240w,
+/static/06c661de1b7f3a870c74e9b380eb261e/e85cb/monitoring_stats.png 480w,
+/static/06c661de1b7f3a870c74e9b380eb261e/d9199/monitoring_stats.png 960w,
+/static/06c661de1b7f3a870c74e9b380eb261e/07a9c/monitoring_stats.png 1440w,
+/static/06c661de1b7f3a870c74e9b380eb261e/29114/monitoring_stats.png 1920w,
+/static/06c661de1b7f3a870c74e9b380eb261e/e8950/monitoring_stats.png 2000w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;Run your JMeter test with Taurus and after it finishes the script will pick up all the files (kpi.jtl, error.jtl and monitoring_logs.csv) and upload them to Jtl Reporter.&lt;/p&gt;</content:encoded></item></channel></rss>
