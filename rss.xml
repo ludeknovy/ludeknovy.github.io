@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ludeknovy.tech]]></title><description><![CDATA[ludeknovy.tech]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 06 Sep 2020 06:16:51 GMT</lastBuildDate><item><title><![CDATA[KPI validation with locust.io]]></title><description><![CDATA[Tutorial on how to create KPI validation for locust.io to automatically check whether application meets performance criteria.]]></description><link>https://ludeknovy.tech/blog/kpi-validation-with-locust/</link><guid isPermaLink="false">https://ludeknovy.tech/blog/kpi-validation-with-locust/</guid><pubDate>Mon, 31 Aug 2020 02:46:37 GMT</pubDate><content:encoded>&lt;p&gt;In performance testing KPIs should be an inherent part of requirements, thus we don’t blindly stress your application but rather we have clear idea what your stack should handle under defined circumstances. Real world example could be: “The 90 percentile should be below 50ms while handling 500 RPS (requests per second)”.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ludeknovy.tech]]></title><description><![CDATA[ludeknovy.tech]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 06 Sep 2020 06:30:09 GMT</lastBuildDate><item><title><![CDATA[KPI validation with locust.io]]></title><description><![CDATA[Tutorial on how to create KPI validation for locust.io to automatically check whether application meets performance criteria.]]></description><link>https://ludeknovy.tech/blog/kpi-validation-with-locust/</link><guid isPermaLink="false">https://ludeknovy.tech/blog/kpi-validation-with-locust/</guid><pubDate>Mon, 31 Aug 2020 02:46:37 GMT</pubDate><content:encoded>&lt;p&gt;In performance testing KPIs should be an inherent part of requirements, thus we don’t blindly stress your application but rather we have clear idea what your stack should handle under defined circumstances. Real world example could be: “The 90 percentile should be below 50ms while handling 500 RPS (requests per second)”.&lt;/p&gt;
 &lt;p&gt;Once we fine tuned you application to meet defined performance criteria we can hook up this test into your CI/CD tool and run the same performance test as a part of your delivery pipeline to prevent performance regression. To fully automate whole process — we want want to look at the results only when the build has failed because of defined KPIs were not met — we need to add ability to decide whether to pass or fail to our Locust script. Locust doesn’t have this feature baked in, but fortunately Locust is very hackable and provide nice API for customization.&lt;/p&gt;
 &lt;p&gt;For the purpose of automated KPI validation we are going to create custom plugin using locust’s event hooks and its inner statistics. The overall plugin design is pretty simple:&lt;/p&gt;
 &lt;ol&gt;
@@ -15,7 +15,42 @@
     KPI_SETTINGS &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;/store/inventory&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;percentile_90&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;rps&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;500&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;error_rate&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
     KpiPlugin&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;env&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;environment&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; kpis&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;KPI_SETTINGS&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The above script will make your build fail in case /store/inventory endpoint won’t meet one of the defined criteria — 90 percentile is worse than 50ms, RPS is under 500, error rate is higher than 0%.&lt;/p&gt;
-&lt;p&gt;Happy performance testing.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Custom matcher for API definition in Python with PyHamcrest and Schemathesis]]></title><description><![CDATA[Tutorial on how to create custom matcher for API response schema using schemathesis and OAS/swagger.]]></description><link>https://ludeknovy.tech/blog/custom-matcher-for-api-definition/</link><guid isPermaLink="false">https://ludeknovy.tech/blog/custom-matcher-for-api-definition/</guid><pubDate>Tue, 02 Jun 2020 02:46:37 GMT</pubDate><content:encoded>&lt;p&gt;In the other article I showed you how to create custom matcher for API status code. And today we are going to look at how to do the same for easy and fast testing of API response definition.&lt;/p&gt;
+&lt;p&gt;Happy performance testing.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Custom matcher for API definition in Python with PyHamcrest and Schemathesis]]></title><description><![CDATA[Tutorial on how to create custom matcher for API response schema using schemathesis and OAS/swagger.]]></description><link>https://ludeknovy.tech/blog/custom-matcher-for-api-definition/</link><guid isPermaLink="false">https://ludeknovy.tech/blog/custom-matcher-for-api-definition/</guid><pubDate>Tue, 02 Jun 2020 02:46:37 GMT</pubDate><content:encoded>&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/6530833b83b4fd64cd2c5c3c400449e0/6b26f/api.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 38.33333333333333%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAIAAAB2/0i6AAAACXBIWXMAAAsSAAALEgHS3X78AAABF0lEQVQY043GuUoEQRSF4Xr/yMxUMBwTH0AQkREjQXFBnenu6r1rvbeW3nss0UBaAw8fP4fQJEEAY2yAaPq+P/xj0zQty0IeKFLeCm25skwahR5dH4DtQo0ffD//hm5o+4mc3B4uX+es0bSCKJe0hrTBICl1XOpwhJ1WpJsL4Ti0ZBNdbKv7XDQJKzJRF8ByxXJZc69x9jA61Zs/mdGTzcvTTZaVUlHGUy4yqUILpUsNNWIgfKu6boV7D21HTu8OV9FSMcwqCNJKp6WuhC8a80WaUbv5J/Azh0HZgeDxkTs/E1HEdnu224l9VL+9yyiWcazizyKlY9Os1fWkJfHb6+75cTBmQOwRPgGEP5hvozWzc2vWLm37ATufwMJH3bi8AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;API schema&quot;
+        title=&quot;API schema&quot;
+        src=&quot;/static/6530833b83b4fd64cd2c5c3c400449e0/d9199/api.png&quot;
+        srcset=&quot;/static/6530833b83b4fd64cd2c5c3c400449e0/8ff5a/api.png 240w,
+/static/6530833b83b4fd64cd2c5c3c400449e0/e85cb/api.png 480w,
+/static/6530833b83b4fd64cd2c5c3c400449e0/d9199/api.png 960w,
+/static/6530833b83b4fd64cd2c5c3c400449e0/07a9c/api.png 1440w,
+/static/6530833b83b4fd64cd2c5c3c400449e0/6b26f/api.png 1658w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;In the other article I showed you how to create&lt;a href=&quot;/blog/custom-status-code-matcher/&quot;&gt; custom matcher for API status code&lt;/a&gt;. And today we are going to look at how to do the same for easy and fast testing of API response definition.&lt;/p&gt;
 &lt;p&gt;For this purpose we are going to need &lt;a href=&quot;https://github.com/kiwicom/schemathesis&quot;&gt;Schemathesis&lt;/a&gt; library. This tool makes API definition testing very easy. It could be use as CLI or in-code as standard python package. And this is how Schemathesis describe itself:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Schemathesis is a tool for testing your web applications built with Open API / Swagger specifications.
