@@ -6,9 +6,8 @@ draft: false
 path: "/blog/custom-matcher-for-api-definition/"
 category: ""
 tags:
-  - "api"
+  - "api testing"
   - "python"
-  - "testing"
   - "schemathesis"
   - "pyhamcrest"
 description: "Tutorial on how to create custom matcher for API response schema using schemathesis and OAS/swagger."

@@ -6,9 +6,8 @@ draft: false
 path: "/blog/custom-status-code-matcher/"
 category: ""
 tags:
-  - "api"
+  - "api testing"
   - "python"
-  - "testing"
 description: "Tutorial on how to create custom status code matcher with Python and PyHamcrest"
 ---
 
