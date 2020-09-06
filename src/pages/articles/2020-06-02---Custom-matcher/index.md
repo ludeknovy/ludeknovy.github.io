@@ -13,7 +13,7 @@ tags:
 description: "Tutorial on how to create custom matcher for API response schema using schemathesis and OAS/swagger."
 ---
 
-In the other article I showed you how to create custom matcher for API status code. And today we are going to look at how to do the same for easy and fast testing of API response definition.
+In the other article I showed you how to create[ custom matcher for API status code](/blog/custom-status-code-matcher/). And today we are going to look at how to do the same for easy and fast testing of API response definition.
 
 For this purpose we are going to need [Schemathesis](https://github.com/kiwicom/schemathesis) library. This tool makes API definition testing very easy. It could be use as CLI or in-code as standard python package. And this is how Schemathesis describe itself:
 
