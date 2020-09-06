@@ -4,7 +4,7 @@ date: "2020-08-31T02:46:37.121Z"
 layout: post
 draft: false
 path: "/blog/kpi-validation-with-locust/"
-category: ""
+category: "performance testing"
 tags:
   - "locust.io"
   - "performance testing"
