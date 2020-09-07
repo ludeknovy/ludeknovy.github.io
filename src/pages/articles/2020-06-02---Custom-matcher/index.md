@@ -15,16 +15,16 @@ description: "Tutorial on how to create custom matcher for API response schema u
 ![API schema](api.png "API schema")
 
 
-In the other article I showed you how to create[ custom matcher for API status code](/blog/custom-status-code-matcher/). And today we are going to look at how to do the same for easy and fast testing of API response definition.
+In the other article, I showed you how to create[ custom matcher for API status code](/blog/custom-status-code-matcher/). And today we are going to look at how to do the same for easy and fast testing of API response definition.
 
-For this purpose we are going to need [Schemathesis](https://github.com/kiwicom/schemathesis) library. This tool makes API definition testing very easy. It could be use as CLI or in-code as standard python package. And this is how Schemathesis describe itself:
+For this purpose, we are going to need [Schemathesis](https://github.com/kiwicom/schemathesis) library. This tool makes API definition testing very easy. It could be use as CLI or in-code as standard python package. And this is how Schemathesis describes itself:
 
 >Schemathesis is a tool for testing your web applications built with Open API / Swagger specifications.
 It reads the application schema and generates test cases which will ensure that your application is compliant with its schema.
 
-Thus Schemathesis can be used not only to assert that API response conforms to API definition but can be used to do property-based testing for specified API input. In this article we are going to focus only on API response assertions. If you'd like know more about Schemathesis check this [post](https://code.kiwi.com/schemathesis-property-based-testing-for-api-schemas-52811fd2b0a4) from its author.
+Thus Schemathesis can be used not only to assert that API response conforms to API definition but can be used to do property-based testing for specified API input. In this article, we are going to focus only on API response assertions. If you'd like to know more about Schemathesis check this [post](https://code.kiwi.com/schemathesis-property-based-testing-for-api-schemas-52811fd2b0a4) from its author.
 
-As in previous article we use PyHamcrest for custom matcher implementation. We need to import `Case` class from schemathesis library to do the actual response definition validation. The following custom matcher implementation assumes usage of `requests` library for performing HTTP request. But this could be easily adjusted for any http library of your choice.
+As in the previous article we use PyHamcrest for custom matcher implementation. We need to import `Case` class from schemathesis library to do the actual response definition validation. The following custom matcher implementation assumes usage of `requests` library for performing HTTP request. But this could be easily adjusted for any http library of your choice.
 
 ```python
 from hamcrest.core.base_matcher import BaseMatcher
