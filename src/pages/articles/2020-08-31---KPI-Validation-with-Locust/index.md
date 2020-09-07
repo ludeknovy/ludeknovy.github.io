@@ -11,11 +11,11 @@ tags:
 description: "Tutorial on how to create KPI validation for locust.io to automatically check whether application meets performance criteria."
 ---
 
-In performance testing KPIs should be an inherent part of requirements, thus we don't blindly stress your application but rather we have clear idea what your stack should handle under defined circumstances. Real world example could be: “The 90 percentile should be below 50ms while handling 500 RPS (requests per second)”.
+In performance testing KPIs should be an inherent part of requirements, thus we don’t blindly stress our application. Rather we should have a clear idea of what our stack should handle under defined circumstances. A real-world example of performance requirement could be: “The 90 percentile should be below 50ms while handling 500 RPS (requests per second)”.
 
-Once we fine tuned you application to meet defined performance criteria we can hook up this test into your CI/CD tool and run the same performance test as a part of your delivery pipeline to prevent performance regression. To fully automate whole process — we want want to look at the results only when the build has failed because of defined KPIs were not met — we need to add ability to decide whether to pass or fail to our Locust script. Locust doesn't have this feature baked in, but fortunately Locust is very hackable and provide nice API for customization.
+Once we fine-tuned our application to meet defined performance criteria we can hook up this test into your CI/CD tool and run the same performance test as a part of your delivery pipeline to prevent performance regression. To fully automate the whole process — we want want to look at the results only when the build has failed because of defined KPIs were not met — we need to add the ability to decide whether to pass or fail to our Locust script. Locust doesn’t have this feature baked in, but fortunately, Locust is very hackable and provides a nice API for customization.
 
-For the purpose of automated KPI validation we are going to create custom plugin using locust's event hooks and its inner statistics. The overall plugin design is pretty simple:
+For the purpose of automated KPI validation we are going to create a custom plugin using locust's event hooks and its inner statistics. The overall plugin design is pretty simple:
 1. Register quitting event
 2. Get all statistics and serialize them
 3. Calculate missing metrics (RPS, percentiles, …)
