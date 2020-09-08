@@ -35,8 +35,8 @@
   
   </a>
     </p>
-<p>Taurus and JMeter became my go-to performance tools very quickly. JMeter is considerer to be industry standard with very strong community support and Taurus creates a wrapper around JMeter (and other performance testing tools) and expose neat abstraction which simplifies the complexity of JMeter and automation. Together they create incredibly powerful performance testing solution. The only major issue I had with them is inconvenient HTML report and test result management in case you do not want to pay for BlazeMeter.</p>
-<p>In theory this could be solved by e.g. Grafana and underlying database. While it works very well for storing and visualising data, it does not work so very well in comparison of those reports in retrospective views. BlazeMeter provides nice reports which help to mitigate this problem, but unfortunately I was not able to find any OSS alternative to it. For this reason I have decided to create <a href="https://github.com/ludeknovy/jtl-reporter">Jtl Reporter</a>.</p>
+<p>Taurus and JMeter became my go-to performance tools very quickly. JMeter is considered to be industry standard with very strong community support and Taurus creates a wrapper around JMeter (and other performance testing tools) and exposes neat abstraction which simplifies the complexity of JMeter and automation. Together they create an incredibly powerful performance testing solution. The only major issue I had with them is inconvenient HTML report and test result management in case you do not want to pay for BlazeMeter.</p>
+<p>In theory, this could be solved by e.g. Grafana and underlying database. While it works very well for storing and visualizing data, it does not work so very well in a comparison of those reports in retrospective views. BlazeMeter provides nice reports which help to mitigate this problem, but unfortunately, I was not able to find any OSS alternative to it. For this reason, I have decided to create <a href="https://github.com/ludeknovy/jtl-reporter">Jtl Reporter</a>.</p>
 <p>
   <a
     class="gatsby-resp-image-link"
@@ -73,9 +73,9 @@
   
   </a>
     </p>
-<p>Jtl Reporter could be defined as JMeter and Taurus performance result reporting and management tool. Jtl Reporter is meant to be used as addition to Grafana. And its main objective is to give you the possibility to store test reports and compare them with ease.</p>
+<p>Jtl Reporter could be defined as JMeter and Taurus performance result reporting and management tool. Jtl Reporter is meant to be used as an addition to Grafana. And its main objective is to give you the possibility to store test reports and compare them with ease.</p>
 <h3>Compare test runs</h3>
-<p>Run couple of measurements and you are ready to start comparing them. Go to test run detail and click “chart icon” in Request statistics card header. You can choose another test run you want it to compare to. After confirmation you get updated request statistics table.</p>
+<p>Run a couple of measurements and you are ready to start comparing them. Go to test run detail and click “chart icon” in Request statistics card header. You can choose another test run you want it to compare to. After confirmation, you get updated request statistics table.</p>
 <p>
   <a
     class="gatsby-resp-image-link"
@@ -112,11 +112,11 @@
   
   </a>
     </p>
-<p>The superscript text numbers indicates whether the current test run result is better (green) or worse (red) compared to selected test run and what is the difference. If you compare two test runs with either different environments or virtual users (threads) you will get a warning, because such a comparison could be misleading.</p>
+<p>The superscript text numbers indicate whether the current test run result is better (green) or worse (red) compared to the selected test run and what is the difference. If you compare two test runs with either different environments or virtual users (threads) you will get a warning, because such a comparison could be misleading.</p>
 <h3>Set test reference</h3>
-<p>If you tuned your application to a desired state you can set the test run as a reference for other tests. This can be achieved by clicking edit button in test detail and checking set as base run . If there is reference run in given scenario each test detail will display “rocket” icon in Request Statistics. It gives you short cut for quick comparison with a test run reference.</p>
+<p>If you tuned your application to the desired state you can set the test run as a reference for other tests. This can be achieved by clicking edit button in test detail and checking set as base run. If there is a reference run in a given scenario each test detail will display “rocket” icon in Request Statistics. It gives you a short cut for a quick comparison with a test run reference.</p>
 <h3>Track changes</h3>
-<p>To track individual label (endpoint) changes over time you can click blue “chart icon” in Request Statistics table. The chart displays 90, 95 and 99 percentiles trends. You have the possibility to compare all results (last 100) or filter them by virtual users which gives you less misleading overview.</p>
+<p>To track individual label (endpoint) changes over time you can click blue “chart icon” in Request Statistics table. The chart displays 90, 95 and 99 percentiles trends. You can compare all results (last 100) or filter them by virtual users which gives you a less misleading overview.</p>
 <p>
   <a
     class="gatsby-resp-image-link"
@@ -160,14 +160,14 @@
 <p>To log-in use default credentials (change them afterwards):</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">username: admin
 password: 2Txnf5prDknTFYTVEXjj</code></pre></div>
-<p>Once you logged in you have to create new project and scenario before you can upload any performance tests data. To create new project click on user icon at the top menu, then administrate — add project . Enter project name and confirm. Now you need to obtain an api token by clicking api tokens and then add token . Finally head to project detail by selecting it in projects dropdown at top menu and click add scenario. Enter scenario name and confirm. Now you are all set and we can integrate with taurus.</p>
+<p>Once you logged in you have to create a new project and scenario before you can upload any performance tests data. To a create new project click on the user icon at the top menu, then administrate — add project. Enter the project name and confirm. Now you need to obtain an api token by clicking api tokens and then add token. Finally head to project detail by selecting it in projects dropdown at the top menu and click add scenario. Enter the scenario name and confirm. Now you are all set and we can integrate with taurus.</p>
 <h2>Taurus integration</h2>
-<p>One of the convenient features taurus gives you are the services namely <a href="https://gettaurus.org/docs/ShellExec/">shell exec service</a>. It allow us to execute commands during test execution stages. We are going to use post-proces stage for uploading test results. The taurus configuration can look like:</p>
+<p>One of the convenient features taurus gives you is the services namely <a href="https://gettaurus.org/docs/ShellExec/">shell exec service</a>. It allows us to execute commands during test execution stages. We are going to use the post-process stage for uploading test results. The taurus configuration can look like:</p>
 <div class="gatsby-highlight" data-language="yaml"><pre class="language-yaml"><code class="language-yaml"><span class="token key atrule">services</span><span class="token punctuation">:</span>
   <span class="token punctuation">-</span> <span class="token key atrule">module</span><span class="token punctuation">:</span> shellexec
     <span class="token key atrule">post-process</span><span class="token punctuation">:</span>
       <span class="token punctuation">-</span> python $PWD/helper/upload<span class="token punctuation">-</span>kpi.py <span class="token punctuation">-</span>p $<span class="token punctuation">{</span>PROJECT<span class="token punctuation">}</span> <span class="token punctuation">-</span>s $<span class="token punctuation">{</span>SCENARIO<span class="token punctuation">}</span> <span class="token punctuation">-</span>e $<span class="token punctuation">{</span>BASE_URL<span class="token punctuation">}</span> <span class="token punctuation">-</span>host $<span class="token punctuation">{</span>HOSTNAME<span class="token punctuation">}</span> <span class="token punctuation">-</span>ec $TAURUS_EXIT_CODE <span class="token punctuation">-</span>er "$<span class="token punctuation">{</span>TAURUS_STOPPING_REASON<span class="token punctuation">:</span><span class="token punctuation">-</span><span class="token string">''</span><span class="token punctuation">}</span>"</code></pre></div>
-<p>Example of upload-kpi.py script can be found <a href="https://github.com/ludeknovy/jtl-reporter/blob/master/scripts/upload_jtl.py">here</a>. Do not forget to provide it with api token generated earlier (to avoid 401 error), project and scenario name. I do store them in the same taurus yaml file. The whole taurus yaml file can look like:</p>
+<p>An example of upload-kpi.py script can be found <a href="https://github.com/ludeknovy/jtl-reporter/blob/master/scripts/upload_jtl.py">here</a>. Do not forget to provide it with api token generated earlier (to avoid 401 error), project and scenario name. I do store them in the same taurus yaml file. The whole taurus yaml file can look like:</p>
 <div class="gatsby-highlight" data-language="yaml"><pre class="language-yaml"><code class="language-yaml"><span class="token key atrule">included-configs</span><span class="token punctuation">:</span>
   <span class="token punctuation">-</span> ./bzt.config.yml
 <span class="token key atrule">settings</span><span class="token punctuation">:</span>

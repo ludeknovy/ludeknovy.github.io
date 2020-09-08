@@ -34,14 +34,14 @@
   
   </a>
     </p>
-<p>In the other article I showed you how to create<a href="/blog/custom-status-code-matcher/"> custom matcher for API status code</a>. And today we are going to look at how to do the same for easy and fast testing of API response definition.</p>
-<p>For this purpose we are going to need <a href="https://github.com/kiwicom/schemathesis">Schemathesis</a> library. This tool makes API definition testing very easy. It could be use as CLI or in-code as standard python package. And this is how Schemathesis describe itself:</p>
+<p>In the other article, I showed you how to create<a href="/blog/custom-status-code-matcher/"> custom matcher for API status code</a>. And today we are going to look at how to do the same for easy and fast testing of API response definition.</p>
+<p>For this purpose, we are going to need <a href="https://github.com/kiwicom/schemathesis">Schemathesis</a> library. This tool makes API definition testing very easy. It could be use as CLI or in-code as standard python package. And this is how Schemathesis describes itself:</p>
 <blockquote>
 <p>Schemathesis is a tool for testing your web applications built with Open API / Swagger specifications.
 It reads the application schema and generates test cases which will ensure that your application is compliant with its schema.</p>
 </blockquote>
-<p>Thus Schemathesis can be used not only to assert that API response conforms to API definition but can be used to do property-based testing for specified API input. In this article we are going to focus only on API response assertions. If you’d like know more about Schemathesis check this <a href="https://code.kiwi.com/schemathesis-property-based-testing-for-api-schemas-52811fd2b0a4">post</a> from its author.</p>
-<p>As in previous article we use PyHamcrest for custom matcher implementation. We need to import <code class="language-text">Case</code> class from schemathesis library to do the actual response definition validation. The following custom matcher implementation assumes usage of <code class="language-text">requests</code> library for performing HTTP request. But this could be easily adjusted for any http library of your choice.</p>
+<p>Thus Schemathesis can be used not only to assert that API response conforms to API definition but can be used to do property-based testing for specified API input. In this article, we are going to focus only on API response assertions. If you’d like to know more about Schemathesis check this <a href="https://code.kiwi.com/schemathesis-property-based-testing-for-api-schemas-52811fd2b0a4">post</a> from its author.</p>
+<p>As in the previous article we use PyHamcrest for custom matcher implementation. We need to import <code class="language-text">Case</code> class from schemathesis library to do the actual response definition validation. The following custom matcher implementation assumes usage of <code class="language-text">requests</code> library for performing HTTP request. But this could be easily adjusted for any http library of your choice.</p>
 <div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token keyword">from</span> hamcrest<span class="token punctuation">.</span>core<span class="token punctuation">.</span>base_matcher <span class="token keyword">import</span> BaseMatcher
 <span class="token keyword">from</span> requests <span class="token keyword">import</span> Response
 <span class="token keyword">from</span> schemathesis <span class="token keyword">import</span> Case
