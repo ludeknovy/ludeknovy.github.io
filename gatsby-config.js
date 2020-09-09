@@ -128,6 +128,14 @@ module.exports = {
     'gatsby-plugin-catch-links',
     'gatsby-plugin-react-helmet',
     {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://ludeknovy.tech',
+        sitemap: 'https://ludeknovy.tech/sitemap.xml',
+        policy: [{ userAgent: '*', allow: '/' }],
+      },
+    },
+    {
       resolve: 'gatsby-plugin-sass',
       options: {
         postCssPlugins: [
