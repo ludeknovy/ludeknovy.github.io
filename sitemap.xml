@@ -4,13 +4,13 @@
 <url> <loc>https://ludeknovy.tech/tags/locust-io/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ludeknovy.tech/tags/performance-testing/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ludeknovy.tech/categories/performance-testing/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://ludeknovy.tech/blog/custom-status-code-matcher/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://ludeknovy.tech/blog/custom-matcher-for-api-definition/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ludeknovy.tech/tags/api-testing/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ludeknovy.tech/tags/python/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://ludeknovy.tech/categories/api-testing/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://ludeknovy.tech/blog/custom-matcher-for-api-definition/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ludeknovy.tech/tags/schemathesis/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ludeknovy.tech/tags/pyhamcrest/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://ludeknovy.tech/categories/api-testing/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://ludeknovy.tech/blog/custom-status-code-matcher/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ludeknovy.tech/blog/generate-intuitive-jmeter-reports-with-jtlreporter-and-taurus/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ludeknovy.tech/tags/jmeter/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ludeknovy.tech/tags/taurus/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
