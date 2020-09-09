@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://ludeknovy.tech/sitemap.xml
+Host: https://ludeknovy.tech
