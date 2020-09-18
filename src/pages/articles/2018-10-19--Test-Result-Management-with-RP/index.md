@@ -8,7 +8,7 @@ category: "test automation"
 tags:
     - test automation
     - reporting
-description: "Tutorial on how to create KPI validation for locust.io to automatically check whether application meets performance criteria."
+description: "ReportPortal can give you an answer to one important question - why are my tests failing?"
 ---
 
 From my experience, the key part of a good testing infrastructure is test result reporting. For some reason, this topic is overlooked by the testing community. You can find lots of resources on how to learn this tool and that framework and which is better than others, but very little has been written on how to tackle test results management. I will try to demonstrate why you should care about test result management too.
