@@ -1,4 +1,59 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ludeknovy.tech]]></title><description><![CDATA[Thoughts on testing and test automation]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 18 Sep 2020 20:07:26 GMT</lastBuildDate><item><title><![CDATA[KPI validation with locust.io]]></title><description><![CDATA[Tutorial on how to create KPI validation for locust.io to automatically check whether application meets performance criteria.]]></description><link>https://ludeknovy.tech/blog/kpi-validation-with-locust/</link><guid isPermaLink="false">https://ludeknovy.tech/blog/kpi-validation-with-locust/</guid><pubDate>Mon, 31 Aug 2020 02:46:37 GMT</pubDate><content:encoded>&lt;p&gt;In performance testing KPIs should be an inherent part of requirements, thus we don’t blindly stress our application. Rather we should have a clear idea of what our stack should handle under defined circumstances. A real-world example of performance requirement could be: “The 90 percentile should be below 50ms while handling 500 RPS (requests per second)”.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ludeknovy.tech]]></title><description><![CDATA[Thoughts on testing and test automation]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 19 Sep 2020 10:53:19 GMT</lastBuildDate><item><title><![CDATA[Code coverage of E2E with Playwright]]></title><description><![CDATA[Tutorial on how to collect code coverage of E2E tests]]></description><link>https://ludeknovy.tech/blog/code-coverage-of-e2e-tests-with-playwright/</link><guid isPermaLink="false">https://ludeknovy.tech/blog/code-coverage-of-e2e-tests-with-playwright/</guid><pubDate>Sat, 19 Sep 2020 02:46:37 GMT</pubDate><content:encoded>&lt;p&gt;I have been playing with Playwright for some time, and their documentation (they even have &lt;a href=&quot;https://playwright.tech/blog/tracking-frontend-coverage-with-playwright&quot;&gt;blog post&lt;/a&gt; about it) gave me an idea of measuring code coverage of E2E tests.&lt;/p&gt;
+&lt;h2&gt;What is Playwright?&lt;/h2&gt;
+&lt;p&gt;Playwright is one of the newest UI testing tool, which describes itself as a tool “to enable cross-browser web automation that is ever-green, capable, reliable and fast.” (Clearly they market itself as selenium competitor as selenium is often connected with terms like “unreliable” and “slow”) Playwright has great API, auto waits, multiple browser support (Chromium, WebKit, Firefox), intercepting networks, it supports automatic code coverage collection and more.&lt;/p&gt;
+&lt;h2&gt;Why would I need a code coverage of E2E tests?&lt;/h2&gt;
+&lt;p&gt;The code coverage metric is widely connected with unit tests. Primarily because it is easy to measure it for unit tests and every decent testing framework supports it out of the box. Code coverage is much less considered when talking about API tests or E2E tests. I bet the main reason is, that it is not so easy to get it - just try to google API code coverage and compare it unit code coverage. In the second case, Google returns many more results.&lt;/p&gt;
+&lt;p&gt;Code coverage of E2E tests should not be used for dull 100% coverage goal (as with unit tests), since it may bring more problems than gain. But rather it should be used as an indicator. Indicator of whether we have not forgotten to cover any business critical scenario.&lt;/p&gt;
+&lt;h2&gt;How do I get a code coverage?&lt;/h2&gt;
+&lt;p&gt;I was using playwright together with Jest. The playwright community contains &lt;a href=&quot;https://medium.com/r/?url=https%3A%2F%2Fgithub.com%2Fplaywright-community%2Fjest-playwright&quot;&gt;playwright-jest&lt;/a&gt; template for jest framework. This allows you to create &lt;code class=&quot;language-text&quot;&gt;jest-playwright.config.js&lt;/code&gt; where you can set up all playwright settings. In our case, we want to set &lt;code class=&quot;language-text&quot;&gt;collectCoverage&lt;/code&gt; to &lt;code class=&quot;language-text&quot;&gt;true&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Another thing which is needed to gather code coverage, is to instrument your app. In my case I had to install &lt;code class=&quot;language-text&quot;&gt;babel-plugin-istanbul&lt;/code&gt; and add to &lt;code class=&quot;language-text&quot;&gt;.babelrc&lt;/code&gt; file:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;json&quot;&gt;&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token property&quot;&gt;&quot;env&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;development&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token property&quot;&gt;&quot;plugins&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;istanbul&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Start your application in the development environment. To confirm you will be able to get coverage, go to console in dev tools, and type &lt;code class=&quot;language-text&quot;&gt;__coverage__&lt;/code&gt;. If you get an object, you are ready to collect code coverage with your E2E tests.&lt;/p&gt;
+&lt;p&gt;Add new command to your &lt;code class=&quot;language-text&quot;&gt;package.json&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;json&quot;&gt;&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token property&quot;&gt;&quot;test:e2e&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;nyc --reporter=html jest&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You can choose whatever reporter you want. Istanbul provides plethoras of them.&lt;/p&gt;
+&lt;p&gt;Type &lt;code class=&quot;language-text&quot;&gt;npm run test:e2e&lt;/code&gt;. And once your test execution finishes you should get console output like this:&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/950ceba81aac28aa4464ca4243a45d8f/02b44/e2e_coverage.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 960px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 43.75%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABYlAAAWJQFJUiTwAAAB8UlEQVQoz22RWW/TQBSF/d+ReOWJZ554QlRCQiCBkKhoaJI2u+M6zuIl3pfYcbzFafmYNEJ9YaSj880d6c6ZO1IQJFR1S1W11M3pmev6xPH4JPaPtO0f/q0X+j+fXToWa5piRZUvqQ8rIeGCT7VOW21oyhWt4FNt8HQ0eRR+YevZH5uX+lNjIsX5lry2qVqH4ijUnGVTHl3CXEPzeziJzC7XSQuT3UEnyTdkgs9+rmflhdODgbROdGRfYxGtMLMlcbUkKjV2jY4WdvihvEMNOiTVGiue4e1V/EzFjmXCwwI3U3BSRdQfsHdzJN0bI5t95uYdYdJnn/VJ0x55PsK0PtKdvGJjfyHd9XGca4KogxvfsA2uiZJbfP+GQFwYiMs99xeS4WiohsKD8SAOFZJIIQ4V0mTBetOhK3/Csu+IgjnOdkIUj/CTGzzRNIzG+K6M703xHCF3iqTFKmNfRonm2AcZt5RxihlhLerudz4M3zCwv+IVczbxAGc/wU1H4skXNnYjrGz8LCMZioZidmNXRY0WhOVFQaGS1Ctk7ydXo7eM7G9EhYYRT9jtpzTZPUXcEx8hs01FgOwiKxEJ1WjG0B0y9oaY+4FIOWCb3+OVU5HsM+/7r+maVzhipsvwN9vsTgz/Fiu68CbpiZR9dKF11OUvYE6UaSQn7oMAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;E2E test code coverage report&quot;
+        title=&quot;E2E test code coverage report&quot;
+        src=&quot;/static/950ceba81aac28aa4464ca4243a45d8f/d9199/e2e_coverage.png&quot;
+        srcset=&quot;/static/950ceba81aac28aa4464ca4243a45d8f/8ff5a/e2e_coverage.png 240w,
+/static/950ceba81aac28aa4464ca4243a45d8f/e85cb/e2e_coverage.png 480w,
+/static/950ceba81aac28aa4464ca4243a45d8f/d9199/e2e_coverage.png 960w,
+/static/950ceba81aac28aa4464ca4243a45d8f/07a9c/e2e_coverage.png 1440w,
+/static/950ceba81aac28aa4464ca4243a45d8f/29114/e2e_coverage.png 1920w,
+/static/950ceba81aac28aa4464ca4243a45d8f/02b44/e2e_coverage.png 3358w&quot;
+        sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;This report reminds us, that there is one area of the application which is not covered by E2E tests at all. And it’s up to further risk consideration whether it should or not to be included in E2E test suite.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[KPI validation with locust.io]]></title><description><![CDATA[Tutorial on how to create KPI validation for locust.io to automatically check whether application meets performance criteria.]]></description><link>https://ludeknovy.tech/blog/kpi-validation-with-locust/</link><guid isPermaLink="false">https://ludeknovy.tech/blog/kpi-validation-with-locust/</guid><pubDate>Mon, 31 Aug 2020 02:46:37 GMT</pubDate><content:encoded>&lt;p&gt;In performance testing KPIs should be an inherent part of requirements, thus we don’t blindly stress our application. Rather we should have a clear idea of what our stack should handle under defined circumstances. A real-world example of performance requirement could be: “The 90 percentile should be below 50ms while handling 500 RPS (requests per second)”.&lt;/p&gt;
 &lt;p&gt;Once we fine-tuned our application to meet defined performance criteria we can hook up this test into your CI/CD tool and run the same performance test as a part of your delivery pipeline to prevent performance regression. To fully automate the whole process — we want want to look at the results only when the build has failed because of defined KPIs were not met — we need to add the ability to decide whether to pass or fail to our Locust script. Locust doesn’t have this feature baked in, but fortunately, Locust is very hackable and provides a nice API for customization.&lt;/p&gt;
 &lt;p&gt;For the purpose of automated KPI validation we are going to create a custom plugin using locust’s event hooks and its inner statistics. The overall plugin design is pretty simple:&lt;/p&gt;
 &lt;ol&gt;

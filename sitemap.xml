@@ -18,6 +18,9 @@
 <url> <loc>https://ludeknovy.tech/tags/test-automation/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ludeknovy.tech/tags/reporting/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ludeknovy.tech/categories/test-automation/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://ludeknovy.tech/blog/code-coverage-of-e2e-tests-with-playwright/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://ludeknovy.tech/tags/e-2-e/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://ludeknovy.tech/tags/playwright/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ludeknovy.tech/categories/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ludeknovy.tech/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ludeknovy.tech/tags/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
