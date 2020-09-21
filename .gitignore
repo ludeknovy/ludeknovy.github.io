@@ -7,3 +7,4 @@ npm-debug.log
 .idea
 gatsby-starter-lumen.iml
 src/pages/articles/.DS_Store
+.DS_Store
