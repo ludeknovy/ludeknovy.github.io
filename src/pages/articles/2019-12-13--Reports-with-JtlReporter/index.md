@@ -9,7 +9,7 @@ tags:
   - "jmeter"
   - "taurus"
   - "performance testing"
-description: "Tutorial on how to create KPI validation for locust.io to automatically check whether application meets performance criteria."
+description: "Get rid of static JMeter HTML report and manage your test reports with Jtl Reporter"
 ---
 
 ![Performance report](report.png "Performance report")
