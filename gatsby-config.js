@@ -123,7 +123,13 @@ module.exports = {
         fonts: ['roboto:400,400i,500,700'],
       },
     },
-    'gatsby-plugin-sitemap',
+    {
+      resolve: 'gatsby-plugin-sitemap',
+      createLinkInHead: true,
+      options: {
+        exclude: ['/categories/*', '/tags/*', '/categories', '/tags'],
+      },
+    },
     'gatsby-plugin-offline',
     'gatsby-plugin-catch-links',
     'gatsby-plugin-react-helmet',
