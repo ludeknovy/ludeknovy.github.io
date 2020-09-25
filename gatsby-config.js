@@ -1,7 +1,7 @@
 const lost = require('lost')
 const pxtorem = require('postcss-pxtorem')
 
-const url = 'https://ludeknovy.tech'
+const url = 'https://wwww.ludeknovy.tech'
 
 module.exports = {
   siteMetadata: {
@@ -130,14 +130,20 @@ module.exports = {
         exclude: ['/categories/*', '/tags/*', '/categories', '/tags'],
       },
     },
+    {
+      resolve: 'gatsby-plugin-canonical-urls',
+      options: {
+        siteUrl: url,
+      },
+    },
     'gatsby-plugin-offline',
     'gatsby-plugin-catch-links',
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: 'https://ludeknovy.tech',
-        sitemap: 'https://ludeknovy.tech/sitemap.xml',
+        host: url,
+        sitemap: `${url}/sitemap.xml`,
         policy: [{ userAgent: '*', allow: '/' }],
       },
     },
