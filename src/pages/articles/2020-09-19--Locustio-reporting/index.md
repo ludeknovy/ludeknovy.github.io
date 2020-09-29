@@ -11,7 +11,7 @@ tags:
 description: "Tutorial on how to create Locust.io performance reports."
 ---
 
-Locust.io is without any doubts an excellent performance testing tool. But by default, it lacks one very important feature - better reporting capabilities. Although out of the box its UI provides charts and label statistics, the charts are not persistent. Fortunately, the label statistics can be downloaded in CSV during or after the test run. The issue with end result CSV statistics is that you lose a significant amount of information - the test progress. If there was any considerable performance drop or error rate spike, you won’t know at what time this had happened. Thus, not able to correlate it to backend service metrics. At last but not least manual storing and comparing CSV files is counter-intuitive and error-prone.
+Locust.io is without any doubts an excellent performance testing tool. But by default, it lacks one very important feature - better reporting capabilities. Although out of the box its UI provides charts and label statistics, the charts are not persistent. The label statistics can be downloaded in CSV during or after the test run. The issue with end result CSV statistics is that you lose a significant amount of information - the test progress. If there was any considerable performance drop or error rate spike, you won’t know at what time this had happened. Thus, you won't be able to correlate it to backend service metrics. At last but not least manual storing and comparing CSV files is counter-intuitive and error-prone.
 
 ![Performance report](report_locust.png "Performance report")
 
