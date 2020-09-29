@@ -6,5 +6,6 @@
 <url> <loc>https://wwww.ludeknovy.tech/blog/custom-status-code-matcher/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wwww.ludeknovy.tech/blog/generate-intuitive-jmeter-reports-with-jtlreporter-and-taurus/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wwww.ludeknovy.tech/blog/test-results-management-with-reportportal/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://wwww.ludeknovy.tech/blog/generate-intuitive-locustio-reports-with-jtl-reporter/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://wwww.ludeknovy.tech/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 </urlset>
