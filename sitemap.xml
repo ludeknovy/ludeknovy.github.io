@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url> <loc>https://wwww.ludeknovy.tech/blog/generate-intuitive-locustio-reports-with-jtl-reporter/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://wwww.ludeknovy.tech/blog/kpi-validation-with-locust/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://wwww.ludeknovy.tech/blog/code-coverage-of-e2e-tests-with-playwright/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://wwww.ludeknovy.tech/blog/custom-matcher-for-api-definition/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://wwww.ludeknovy.tech/blog/custom-status-code-matcher/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://wwww.ludeknovy.tech/blog/generate-intuitive-jmeter-reports-with-jtlreporter-and-taurus/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://wwww.ludeknovy.tech/blog/test-results-management-with-reportportal/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://wwww.ludeknovy.tech/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://www.ludeknovy.tech/blog/generate-intuitive-locustio-reports-with-jtl-reporter/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://www.ludeknovy.tech/blog/code-coverage-of-e2e-tests-with-playwright/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://www.ludeknovy.tech/blog/kpi-validation-with-locust/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://www.ludeknovy.tech/blog/custom-matcher-for-api-definition/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://www.ludeknovy.tech/blog/custom-status-code-matcher/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://www.ludeknovy.tech/blog/generate-intuitive-jmeter-reports-with-jtlreporter-and-taurus/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://www.ludeknovy.tech/blog/test-results-management-with-reportportal/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://www.ludeknovy.tech/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 </urlset>
