@@ -1,7 +1,7 @@
 const lost = require('lost')
 const pxtorem = require('postcss-pxtorem')
 
-const url = 'https://wwww.ludeknovy.tech'
+const url = 'https://www.ludeknovy.tech'
 
 module.exports = {
   siteMetadata: {
