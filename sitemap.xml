@@ -7,6 +7,7 @@
 <url> <loc>https://www.ludeknovy.tech/blog/custom-status-code-matcher/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://www.ludeknovy.tech/blog/generate-intuitive-jmeter-reports-with-jtlreporter-and-taurus/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://www.ludeknovy.tech/blog/test-results-management-with-reportportal/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://www.ludeknovy.tech/blog/test-automation-strategy-for-rest-api/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://www.ludeknovy.tech/blog/decoupling-e2e-tests/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://www.ludeknovy.tech/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 </urlset>
