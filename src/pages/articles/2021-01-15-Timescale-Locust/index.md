@@ -7,7 +7,7 @@ path: "/blog/locust-timescaledb-setup/"
 category: "performance testing"
 tags:
   - "performance testing"
-  - "locust"
+  - "locust.io"
 description: "Setting up TimescaleDB for monitoring your Locust performance tests"
 ---
 
