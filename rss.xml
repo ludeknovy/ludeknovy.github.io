@@ -1,4 +1,82 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ludeknovy.tech]]></title><description><![CDATA[Thoughts on testing and test automation]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 11 May 2021 06:46:31 GMT</lastBuildDate><item><title><![CDATA[Test Automation Strategy for REST APIs with Python — Tooling]]></title><description><![CDATA[Automated REST APIs testing with Python]]></description><link>https://www.ludeknovy.tech/blog/test-automation-strategy-for-rest-api-with-python/</link><guid isPermaLink="false">https://www.ludeknovy.tech/blog/test-automation-strategy-for-rest-api-with-python/</guid><pubDate>Thu, 08 Apr 2021 02:46:37 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://www.ludeknovy.tech/blog/test-automation-strategy-for-rest-api/&quot;&gt;In the previous post&lt;/a&gt;, I gave you a real-world example of a test automation strategy for REST APIs, and thus we know what we expect from our test harness. In today’s post, we are going to look at tooling which will help us to fulfill the strategy by using open source technologies only. As already hinted in the title I’d chosen Python as a programming language. The main reason behind this decision is very simple — its ecosystem of already existing tools allowed me to effectively fulfill the before-defined test strategy. Without further ado here is the list of tools used: locust.io, pytest, Schemathesis, PyHamcrest, ReportPortal. In the following paragraphs, I will try to explain how these tools support the test strategy.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ludeknovy.tech]]></title><description><![CDATA[Thoughts on testing and test automation]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 27 May 2021 17:56:02 GMT</lastBuildDate><item><title><![CDATA[Playwright session recording with Jest Playwright and Jest circus]]></title><description><![CDATA[Tutorial on how to record playwright session and rename videos to match test description names]]></description><link>https://www.ludeknovy.tech/blog/playwright-session-recoring-with-jest/</link><guid isPermaLink="false">https://www.ludeknovy.tech/blog/playwright-session-recoring-with-jest/</guid><pubDate>Thu, 27 May 2021 02:46:37 GMT</pubDate><content:encoded>&lt;p&gt;Of course, we all want to have our build with UI tests green all the time, but unfortunately, there are occasions when someone pushes changes and not fully realizing their consequences and the build goes red. Woohoo, debugging time. Back in the days, I was used to recording videos during E2E run time, so it was kind of natural to have them for Playwright UI tests as well. &lt;/p&gt;
+&lt;p&gt;Luckily Playwright has an API for it and what more, it is easily configurable to record the browser sessions automatically. All you need to do is to add the &lt;code class=&quot;language-text&quot;&gt;recordVideo&lt;/code&gt; property with a path where the videos will be saved. You pass this setting into browser context settings. In case you use &lt;code class=&quot;language-text&quot;&gt;jest-playwright&lt;/code&gt; you pass it to the &lt;code class=&quot;language-text&quot;&gt;contextOptions&lt;/code&gt;, like this: &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// jest-playwright.config.js
+module.exports = {
+  contextOptions: {
+      recordVideo: {
+            dir: &amp;quot;videos/&amp;quot;
+      }
+  },
+  ...
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Run your tests and you will find the video recordings in the &lt;code class=&quot;language-text&quot;&gt;videos&lt;/code&gt; folder. Cool, right? But if you have a second look you will notice that the videos have awkward names. And if you have multiple tests it is impossible to link actual tests and videos without opening them individually until you find them. That can be quite annoying while dealing with failed tests. Fortunately, this can be fixed with a little bit of code.
+To make it work you need to swap jasmin with jest-circus. That’s very easy to do, just install it via npm &lt;code class=&quot;language-text&quot;&gt;npm install --save-dev jest-circus&lt;/code&gt; and the following line into your jest config file:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// jest.config.js
+    ...
+    &amp;quot;testRunner&amp;quot;: &amp;quot;jest-circus/runner&amp;quot;
+    ...&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now jest uses jest-circus as a test runner and it allows us to use its &lt;code class=&quot;language-text&quot;&gt;handleTestEvent&lt;/code&gt; method. The next step is to create a &lt;a href=&quot;https://jestjs.io/docs/configuration#testenvironment-string&quot;&gt;custom jest environment&lt;/a&gt; where we will react on jest events using the &lt;code class=&quot;language-text&quot;&gt;handleTestEvent&lt;/code&gt; method. The goal is to rename the videos after all the tests end and get the test name from jest circus event and change the video name later. Our custom environment could look like this:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// customEnvironment.js
+const PlaywrightEnvironment = require(&amp;quot;jest-playwright-preset/lib/PlaywrightEnvironment&amp;quot;)
+    .default
+const pwConfig = require(&amp;quot;./jest-playwright.config&amp;quot;)
+
+
+class CustomEnvironment extends PlaywrightEnvironment {
+    constructor(config, context) {
+        super(config, context)
+        this.videos = []
+    }
+    async setup() {
+        await super.setup()
+        // Your setup
+    }
+
+    async teardown() {
+        await super.teardown()
+        // Your teardown
+        if (this.videos.length !== 0) {
+            const { recordVideo } = pwConfig.contextOptions
+
+            this.videos.forEach(video =&amp;gt; {
+                const exists = fs.existsSync(video.videoName)
+                if (exists) {
+                    try {
+                        const newVideoName = `${recordVideo.dir}/${video.testName}.webm`
+                        fs.renameSync(video.videoName, newVideoName)
+                    } catch(error) {
+                        // eslint-disable-next-line no-console
+                        console.log(error)
+                    }
+                }
+
+            })
+        }
+    }
+
+    async handleTestEvent(event) {
+
+        if (event.name === &amp;quot;test_done&amp;quot;) {
+            const success = event.test.errors.length === 0 ? true : false
+            const testName = event.test.name.replace(/ /g, &amp;quot;_&amp;quot;)
+            const videoName = await this.global.page.video().path()
+            this.videos.push({ testName, videoName, success })
+        }
+    }
+}
+
+module.exports = CustomEnvironment&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I guess you get the idea now. You can easily change the code to keep only failed tests with updated names if wanted. But before we run the tests to check it really works, we need to do one more change in jest config - to plug the custom environment in: &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;//jest.config.js
+...
+    testEnvironment: &amp;quot;./customEnvironment.js&amp;quot;,
+...&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That’s it. Run your tests and from now on Playwright session recordings will match the test description names.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Read more about Playwright:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.ludeknovy.tech/blog/code-coverage-of-e2e-tests-with-playwright/&quot;&gt;Code coverage of E2E with Playwright&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Test Automation Strategy for REST APIs with Python — Tooling]]></title><description><![CDATA[Automated REST APIs testing with Python]]></description><link>https://www.ludeknovy.tech/blog/test-automation-strategy-for-rest-api-with-python/</link><guid isPermaLink="false">https://www.ludeknovy.tech/blog/test-automation-strategy-for-rest-api-with-python/</guid><pubDate>Thu, 08 Apr 2021 02:46:37 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://www.ludeknovy.tech/blog/test-automation-strategy-for-rest-api/&quot;&gt;In the previous post&lt;/a&gt;, I gave you a real-world example of a test automation strategy for REST APIs, and thus we know what we expect from our test harness. In today’s post, we are going to look at tooling which will help us to fulfill the strategy by using open source technologies only. As already hinted in the title I’d chosen Python as a programming language. The main reason behind this decision is very simple — its ecosystem of already existing tools allowed me to effectively fulfill the before-defined test strategy. Without further ado here is the list of tools used: locust.io, pytest, Schemathesis, PyHamcrest, ReportPortal. In the following paragraphs, I will try to explain how these tools support the test strategy.&lt;/p&gt;
 &lt;h3&gt;Locust and pytest&lt;/h3&gt;
 &lt;p&gt;To achieve very high code reusability and fast authoring it is necessary to write performance tests in code. This way we can model the API calls to be used for functional and non-functional tests. For this reason, I’ve chosen locust.io as a performance testing tool and pytest as a functional testing framework. In the past, I used JMeter as well, but the tool itself does not allow storing the tests in code, but you have to store it in XML format, which is very difficult for tracking changes in the versioning system as it is not very readable compared to plain python code. And if you use JMeter or any other tool it requires you to define and maintain the API calls at two places — for the functional tests and the performance tests themselves. The Locusts standard request interface (Locust also provides FastHttp which has a slightly different request interface) shares the same interface with the requests python library which makes the reusability very easy to achieve.&lt;/p&gt;
 &lt;h3&gt;Schemathesis&lt;/h3&gt;

@@ -11,5 +11,6 @@
 <url> <loc>https://www.ludeknovy.tech/blog/test-automation-strategy-for-rest-api-with-python/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://www.ludeknovy.tech/blog/test-automation-strategy-for-rest-api/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://www.ludeknovy.tech/blog/decoupling-e2e-tests/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://www.ludeknovy.tech/blog/playwright-session-recoring-with-jest/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://www.ludeknovy.tech/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 </urlset>
